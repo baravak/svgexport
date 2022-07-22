@@ -19,7 +19,9 @@ async function renderSvg(commands, done, stdout) {
 
   var browser = await puppeteer.launch({
     headless: true,
-    args: ['--no-sandbox', '--font-render-hinting=none']
+    executablePath: '/usr/bin/chromium-browser',
+    ignoreHTTPSErrors: true,
+    args: ['--no-sandbox', '--font-render-hinting=none', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
   });
 
   // Run each command in parallel.
